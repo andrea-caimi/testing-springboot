@@ -1,4 +1,4 @@
-package com.kaimo.test.springboot;
+package com.kaimo.springboot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

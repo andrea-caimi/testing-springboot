@@ -1,12 +1,14 @@
 package com.kaimo.springboot.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.kaimo.springboot.student.Student;
 
 import java.time.LocalDate;
 
-@RestController("/rest")
+@RestController
+@RequestMapping(path = "/rest")
 public class StudentRestController {
 
     @GetMapping("/student")

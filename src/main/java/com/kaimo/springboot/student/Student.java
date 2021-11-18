@@ -14,6 +14,14 @@ public class Student {
     public Student() {
     }
 
+    public Student(String name, String surname, LocalDate birthDate, Integer age, String email) {
+        this.name = name;
+        this.surname = surname;
+        this.birthDate = birthDate;
+        this.age = age;
+        this.email = email;
+    }
+
     public Student(Long id, String name, String surname, LocalDate birthDate, Integer age, String email) {
         this.id = id;
         this.name = name;

@@ -1,6 +1,8 @@
 package com.kaimo.springboot.service;
 
+import com.kaimo.springboot.dao.StudentRepository;
 import com.kaimo.springboot.student.Student;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -10,17 +12,18 @@ import java.util.List;
 @Service
 public class StudentService {
 
+    @Autowired
+    private StudentRepository studentRepository;
+
     public List<Student> getStudent() {
-        return List.of(
-                new Student(
-                        10L,
-                        "Andrea",
-                        "Caimi",
-                        LocalDate.of(1982, Month.SEPTEMBER,7),
-                        39,
-                        "email"
-                )
-        );
+        return studentRepository.findAll();
     }
 
+    public void upsertStudent(Student student){
+        studentRepository.save(student);
+    }
+
+    public void deleteStudentById(Long id){
+        studentRepository.deleteById(id);
+    }
 }

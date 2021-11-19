@@ -2,6 +2,7 @@ package com.kaimo.springboot.student;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
@@ -15,26 +16,26 @@ public class Student {
     private String name;
     private String surname;
     private LocalDate birthDate;
-    private Integer age;
     private String email;
+
+    @Transient
+    private Integer age;
 
     public Student() {
     }
 
-    public Student(String name, String surname, LocalDate birthDate, Integer age, String email) {
+    public Student(String name, String surname, LocalDate birthDate, String email) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
-        this.age = age;
         this.email = email;
     }
 
-    public Student(Long id, String name, String surname, LocalDate birthDate, Integer age, String email) {
+    public Student(Long id, String name, String surname, LocalDate birthDate, String email) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
-        this.age = age;
         this.email = email;
     }
 
@@ -71,7 +72,7 @@ public class Student {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(birthDate,LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {

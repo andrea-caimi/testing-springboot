@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -19,7 +20,19 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public void upsertStudent(Student student){
+    public void insertStudent(Student student) throws Exception {
+        Optional<Student> studentByEmail = studentRepository.findStudentByEmail(student.getEmail());
+        if(studentByEmail.isPresent()){
+            throw new Exception(String.format("email %s is already present",student.getEmail()));
+        }
+        studentRepository.save(student);
+    }
+
+    public void updateStudent(Student student) throws Exception {
+        Optional<Student> studentById = studentRepository.findById(student.getId());
+        if(!studentById.isPresent()){
+            throw new Exception(String.format("Student not found",student.getEmail()));
+        }
         studentRepository.save(student);
     }
 
